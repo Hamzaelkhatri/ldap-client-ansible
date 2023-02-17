@@ -1,0 +1,7 @@
+- name: ldap installation
+  hosts: all
+  strategy: free 
+  remote_user: bocal
+  become_method: sudo
+  roles:
+    - setup

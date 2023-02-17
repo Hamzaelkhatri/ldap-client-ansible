@@ -1,0 +1,92 @@
+- name : install libnss
+  become: yes
+  ansible.builtin.apt:
+    name: libnss-ldap
+    state: present
+
+- name : install libpam-ldap
+  become: yes
+  ansible.builtin.apt:
+    name: libpam-ldap
+    state: present
+
+#libpam-ldap ldap-utils nslcd
+- name : install ldap-utils
+  become: yes
+  ansible.builtin.apt:
+    name: ldap-utils
+    state: present
+
+- name : install nslcd
+  become: yes
+  ansible.builtin.apt:
+    name: nslcd
+    state: present
+
+- name : configure /etc/nslcd.conf
+  become: yes
+  ansible.builtin.copy:
+    src: nslcd.conf
+    dest: /etc/nslcd.conf
+    owner: root
+    group: root
+    mode: 0644
+
+
+# /etc/nsswitch.conf 
+
+- name : configure /etc/nsswitch.conf
+  become: yes
+  ansible.builtin.copy:
+    src: nsswitch.conf
+    dest: /etc/nsswitch.conf
+    owner: root
+    group: root
+    mode: 0644
+
+# copy ldap.secret
+
+- name : configure /etc/ldap.secret
+  become: yes
+  ansible.builtin.copy:
+    src: ldap.secret
+    dest: /etc/ldap.secret
+    owner: root
+    group: root
+    mode: 0600
+
+# /etc/ldap.conf
+
+- name : configure /etc/ldap.conf
+  become: yes
+  ansible.builtin.copy:
+    src: ldap.conf
+    dest: /etc/ldap.conf
+    owner: root
+    group: root
+    mode: 0644
+
+- name : configure /etc/pam.d/common-session
+  become: yes
+  ansible.builtin.copy:
+    src: common-session
+    dest: /etc/pam.d/common-session
+    owner: root
+    group: root
+    mode: 0644
+
+# sudo systemctl restart nslcd
+# - name : restart nslcd
+#   become: yes
+#   ansible.builtin.shell:
+#     cmd: sudo systemctl restart nslcd
+
+# uninstall
+# sudo apt-get remove libnss-ldap libpam-ldap ldap-utils nslcd
+# sudo apt-get autoremove
+# sudo apt-get autoclean
+
+# - name: uninstall all
+#   become: yes
+#   ansible.builtin.shell:
+#     cmd: sudo apt-get remove libnss-ldap libpam-ldap ldap-utils nslcd
