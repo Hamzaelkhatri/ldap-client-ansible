@@ -93,6 +93,9 @@ vars:
     ldap_pam_password: md5
 ```
 
+#### Note 
+you must change also `remote_user` with your username 
+
 put the clients ip in [hosts](./inventory/all)
 ```
 [all]
