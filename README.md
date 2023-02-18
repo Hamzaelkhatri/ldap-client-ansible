@@ -95,7 +95,7 @@ Example :
 put the clients ip in [hosts](./inventory/all)
 ```
 [all]
-YOUR IPS
+Client Ips
 ```
 
 Example :
