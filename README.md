@@ -84,6 +84,7 @@ vars:
 Example :
 
 ```yml
+vars:
     ldap_server: ldap://192.168.8.149
     ldap_base: dc=example,dc=com
     ldap_binddn: cn=admin,dc=example,dc=com
