@@ -1,4 +1,7 @@
-## LDAP Client Ansible
+# LDAP Client Ansible
+
+## install Ldap without ansible 
+
 ### Prerequisites
 
 Ubuntu 20.04 or later
@@ -60,4 +63,47 @@ Once the LDAP client is installed and configured, you can log in using your LDAP
 $ login <username> 
 Password: ****
 Welcome to Ubuntu.
+```
+
+---
+
+## install ldap client using ansible 
+
+Change the file [playbook](./playbook.yml)
+
+```yml
+vars: 
+    ldap_server: [URL]
+    ldap_base: [LDAP_BASE]
+    ldap_binddn: [BINDDN_ROOT]
+    ldap_bindpw: [PASSWORD]
+    ldap_version: [LDAP_VERSION]
+    ldap_pam_password: [PAM_PASSWPORD_CRYPT]
+```
+
+Example :
+
+```yml
+    ldap_server: ldap://192.168.8.149
+    ldap_base: dc=example,dc=com
+    ldap_binddn: cn=admin,dc=example,dc=com
+    ldap_bindpw: 1234
+    ldap_version: 3
+    ldap_pam_password: md5
+```
+
+put the clients ip in [hosts](./inventory/all)
+```
+[all]
+YOUR IPS
+```
+
+Example :
+
+```
+[all]
+192.168.8.168
+192.168.8.164
+192.168.8.163
+192.168.8.161
 ```
