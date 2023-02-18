@@ -3,5 +3,13 @@
   strategy: free 
   remote_user: bocal
   become_method: sudo
+  vars:
+    ldap_server: ldap://192.168.8.149
+    ldap_base: dc=example,dc=com
+    ldap_binddn: cn=admin,dc=example,dc=com
+    ldap_bindpw: 1234
+    ldap_version: 3
+    ldap_pam_password: md5
+
   roles:
     - setup
